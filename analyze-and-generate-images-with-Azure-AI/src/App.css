@@ -5,38 +5,38 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+main {
+  max-width: 30vw;
+  pre {
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
   }
-  to {
-    transform: rotate(360deg);
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    input {
+      padding: 0.5em;
+      font-size: 1em;
+    }
+  }
+  h1 {
+    background: linear-gradient(100deg, #ee5454, var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  img {
+    max-width: 60%;
+  }
+  .subscription {
+    color: gray;
+    background-color: #0c0a0a;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media screen and (width <= 1100px) {
+  main {
+    max-width: 60vw;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
