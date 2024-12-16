@@ -1,17 +1,15 @@
 # Proyecto de Análisis de API con Integración de Azure Services
 
 Este proyecto es parte del desafío del curso de Microsoft Learn, donde se desarrolló una aplicación web inteligente utilizando los servicios de **Azure Cognitive Services** y **Azure OpenAI**. La aplicación integra funcionalidades de **Computer Vision**, aprovechando los modelos avanzados de análisis de imágenes, junto con capacidades generativas de inteligencia artificial.
+Certificado: [Proyecto de Análisis de API con Integración de Azure Services](https://learn.microsoft.com/api/achievements/share/es-es/CarlosVasquez-6351/VDUED3KM?sharingId=3A1FCDDAB13E09FA)
 
 ## Servicios de Microsoft Auzre utilizados
-
 
   <img src="https://github.com/user-attachments/assets/b1a9517a-15de-45ef-8bbc-399750bde604" alt="01007-icon-service-Static-Apps" height="100" width="170"/>
   <img src="https://github.com/user-attachments/assets/0a47736c-8ebc-4a55-9828-537a9f73a452" alt="03438-icon-service-Azure-OpenAI" height="100" width="100"/>
   <img src="https://github.com/user-attachments/assets/df0986fd-b3b6-4e05-b4c6-55e9079e4859" alt="00792-icon-service-Computer-Vision" height="100" width="140"/>
   
   Aplicación web estática | Azure OpenAI | Computer Vision
-
-
 
 ## Descripción del Proyecto
 
