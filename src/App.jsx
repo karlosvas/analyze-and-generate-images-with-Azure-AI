@@ -1,6 +1,6 @@
-import { isConfigured } from "./scripts/azure-config";
-import { analyzeImage } from "./scripts/azure-image-analysis";
-import { generateImage } from "./scripts/azure-image-generation";
+import { isConfigured } from "./service/azure/azure-config";
+import { analyzeImage } from ".//service/azure/azure-image-analysis";
+import { generateImage } from ".//service/azure/azure-image-generation";
 import { useState } from "react";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,20 +16,12 @@ function App() {
 
     if (result.message) {
       // No es una imagen valida
-      if (
-        result.message.includes(
-          "Your prompt may contain text that is not allowed by our safety system."
-        )
-      ) {
+      if (result.message.includes("Your prompt may contain text that is not allowed by our safety system.")) {
         toast.error("The text entered is not allowed for security reasons");
       }
     } else if (result.error.message) {
-      if (
-        result.error.message.includes("The provided image url is not valid.")
-      ) {
-        toast.error(
-          "An error occurred while analyzing the image, pls try valid image url"
-        );
+      if (result.error.message.includes("The provided image url is not valid.")) {
+        toast.error("An error occurred while analyzing the image, pls try valid image url");
       }
     } else toast.error("An error occurred while generating the image");
   }
@@ -97,24 +89,13 @@ function App() {
     setinputText("");
   }
 
-  if (!isConfigured())
-    return <h1>Key or endpoint not configured for cognitive services</h1>;
+  if (!isConfigured()) return <h1>Key or endpoint not configured for cognitive services</h1>;
 
   return (
     <>
       <header>
-        <a
-          href="https://github.com/karlosvas/analyze-and-generate-images-with-Azure-AI"
-          target="_blank"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="0px"
-            width="50"
-            height="50"
-            viewBox="0 0 48 48"
-          >
+        <a href="https://github.com/karlosvas/analyze-and-generate-images-with-Azure-AI" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48">
             <circle cx="28" cy="28" r="18" fill="#9fa8da"></circle>
             <path
               fill="none"
@@ -149,18 +130,10 @@ function App() {
             onChange={(event) => setinputText(event.target.value)}
             placeholder="Esciba URL para analizar o texto para generar imagen"
           />
-          <button
-            onClick={getImageInfo}
-            disabled={subscription}
-            className={subscription ? "subscription" : ""}
-          >
+          <button onClick={getImageInfo} disabled={subscription} className={subscription ? "subscription" : ""}>
             Analizar
           </button>
-          <button
-            onClick={getGenerateImg}
-            disabled={subscription}
-            className={subscription ? "subscription" : ""}
-          >
+          <button onClick={getGenerateImg} disabled={subscription} className={subscription ? "subscription" : ""}>
             Generar
           </button>
         </form>

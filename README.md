@@ -39,3 +39,8 @@ El desafío consistió en desarrollar una aplicación web que:
 - Cuenta de **Azure**.
 - Cuenta de **GitHub** para la implementación de la canalización CI/CD.
 - Conocimientos básicos de **HTML**, **JavaScript**, y **Git**.
+
+## Funcionamiento
+
+Actualmente no es posible acceder ya que el proyecto fue desplegado temporalmente para el desafío y no se encuentra disponible en la nube.
+La suscripcion grstuita de Azure venció y no se ha renovado, al plan de pago.
