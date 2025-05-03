@@ -42,5 +42,4 @@ El desafío consistió en desarrollar una aplicación web que:
 
 ## Funcionamiento
 
-Actualmente no es posible acceder ya que el proyecto fue desplegado temporalmente para el desafío y no se encuentra disponible en la nube.
-La suscripcion grstuita de Azure venció y no se ha renovado, al plan de pago.
+> **⚠️ Nota:** Este proyecto fue desplegado temporalmente como parte de un desafío. Actualmente no está disponible en la nube debido a la expiración de la suscripción gratuita de Azure. Para ejecutarlo localmente, asegúrate de contar con una suscripción activa de Azure y seguir los pasos de configuración descritos en este documento.

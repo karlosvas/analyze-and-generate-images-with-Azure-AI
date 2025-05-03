@@ -8,9 +8,12 @@ import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  // inputText es el texto que se va a analizar o generar
+  // subscription es el estado de la suscripción, si está en proceso de análisis o generación
   const [inputText, setinputText] = useState("");
   const [subscription, setSubscription] = useState("");
 
+  // Manejamos el error de la notificación con toast
   function manageErrorToast(result) {
     if (typeof result !== "object") return;
 
@@ -26,7 +29,7 @@ function App() {
     } else toast.error("An error occurred while generating the image");
   }
 
-  // Create elements to display the results
+  // Creamos los elementos para mostrar los resultados
   function DisplayResults(src, result) {
     toast.dismiss();
     const root = document.getElementById("results");
@@ -35,27 +38,33 @@ function App() {
     if (result.captionResult) h2.textContent = "Image Analysis";
     else if (result.created) h2.textContent = "Generated Image";
     else {
-      // Response success but not valid
+      // Respuesta exitosa pero no valida
       manageErrorToast(result);
       return;
     }
-    root.appendChild(h2);
 
+    // Creamos el elemento h2 y lo añadimos al DOM, creamos el elemento img y lo añadimos al DOM
+    root.appendChild(h2);
     const image = document.createElement("img");
+    const reponse = document.createElement("pre");
+
+    // Imagen generada o analizada
     image.src = src;
     root.appendChild(image);
 
-    const reponse = document.createElement("pre");
+    // Respuesta de la API
     reponse.innerHTML = JSON.stringify(result, null, 2);
     root.appendChild(reponse);
 
     toast.success(`${h2.textContent} completed successfully`);
   }
 
+  // Obtener la información de la imagen
   async function getImageInfo(event) {
     event.preventDefault();
     setSubscription(true);
     const features = ["Caption"];
+    toast.loading("Analyzing image...");
     // const domainDetails = ["Celebrities", "Landmarks"];
 
     try {
@@ -63,28 +72,37 @@ function App() {
         features: features,
         language: "en", // Caption no soporta español
       });
+      // Mostramos la imagen analizada
       DisplayResults(inputText, result);
     } catch (error) {
       // Error de peticion
       DisplayResults("", error);
       console.error("Ocurrio errror", error);
+    } finally {
+      toast.dismiss();
     }
+    // Reseteamos los estados
     setSubscription(false);
     setinputText("");
   }
 
+  // Generamos una imagen basado en el texto dado
   async function getGenerateImg(event) {
     event.preventDefault();
     setSubscription(true);
     try {
       toast.loading("Generating image...");
       const response = await generateImage(inputText);
+      // Mostramos la imagen generada
       DisplayResults(response.data[0].url, response);
     } catch (error) {
       // Error de peticion
       DisplayResults("", error);
       console.error("Ocurrio un error", error);
+    } finally {
+      toast.dismiss();
     }
+    // Reseteamos los estados
     setSubscription(false);
     setinputText("");
   }
@@ -131,10 +149,10 @@ function App() {
             placeholder="Esciba URL para analizar o texto para generar imagen"
           />
           <button onClick={getImageInfo} disabled={subscription} className={subscription ? "subscription" : ""}>
-            Analizar
+            Analyze
           </button>
           <button onClick={getGenerateImg} disabled={subscription} className={subscription ? "subscription" : ""}>
-            Generar
+            Generate
           </button>
         </form>
         <section id="results"></section>

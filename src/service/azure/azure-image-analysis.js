@@ -2,20 +2,22 @@ import createClient from "@azure-rest/ai-vision-image-analysis";
 import { AzureKeyCredential } from "@azure/core-auth";
 import { setLogLevel, AzureLogger } from "@azure/logger";
 
-// Configura el nivel de registro
+// Configuramos el nivel de registro
 setLogLevel("info");
 
-// Asegúrate de que los mensajes de registro se impriman en la consola
+// Nos ssegúramos de que los mensajes de registro se impriman en la consola
 AzureLogger.log = (...args) => {
     console.log(...args);
 };
 
 async function analyzeImage(imageUrl, options) {
+    // Obtenemos la instancia de azure
     const endpoint = import.meta.env.VITE_VISION_ENDPOINT;
     const key = import.meta.env.VITE_VISION_KEY;
-
     const credential = new AzureKeyCredential(key);
-    const client = createClient(endpoint, credential)
+    const client = createClient(endpoint, credential);
+
+    // Hacemos una petición desde el cliente para la descripción una imagen basado en el url dado
     try {
         const res = await client.path('/imageanalysis:analyze').post({
             body: {

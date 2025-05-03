@@ -1,17 +1,19 @@
 import { AzureOpenAI } from "openai";
 
+// Generamos una imagen basado en el texto dado
 async function generateImage(prompt) {
-    // You will need to set these environment variables or edit the following values
+    // Necesitarás configurar estas variables de entorno o editar los siguientes valores
     const endpoint = import.meta.env.VITE_AZURE_OPENAI_ENDPOINT;
     const apiKey = import.meta.env.VITE_AZURE_OPENAI_KEY;
 
-    // The size of the generated image
+    // Tamaño de la imagen a generar
     const size = "1024x1024";
-    // The number of images to generate
+    // El número de imágenes a generar
     const n = 1;
     const deployment = "dall-e-3";
     const apiVersion = "2024-04-01-preview";
 
+    // Creamos una instancia del cliente de Azure OpenAI
     const client = new AzureOpenAI({
         apiKey,
         endpoint,
@@ -19,6 +21,7 @@ async function generateImage(prompt) {
         apiVersion,
         dangerouslyAllowBrowser: true
     });
+    // Generamos la imagen usando el cliente de Azure OpenAI
     try {
         return await client.images.generate({ prompt, model: "", n, size });
     } catch (error) {
